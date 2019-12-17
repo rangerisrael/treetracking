@@ -1,0 +1,37 @@
+Clark Dave Mapanao // fetch mo yung data mo sa database
+$c=mysqli_query($conn,"select * from customer where userid='$id'");
+$prow=mysqli_fetch_array($c);
+// sample ng mga kasama sa form
+$lastname=$_POST['lastname'];
+$firstname=$_POST['firstname'];
+$middlename=$_POST['middlename'];
+$address=$_POST['address'];
+$contact=$_POST['contact'];
+$email=$_POST['email'];
+//image file sa form
+$fileInfo = PATHINFO($_FILES["image"]["name"]);
+if (empty($_FILES["image"]["name"])){
+//pag WALA nilagay si user na file ng picture kukunin ulit yung nasa database at di babaguhin
+$location=$prow['photo'];
+// yung query mo lagay mo dito
+mysqli_query($conn,"update customer set lastname='$lastname', firstname='$firstname', middlename='$middlename', address='$address', contact='$contact', photo='$location' where userid='$id'");
+}
+else{
+// iupload yung image pag may laman
+if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png") {
+$newFilename = $fileInfo['filename'] . "_" . time() . "." . $fileInfo['extension'];
+move_uploaded_file($_FILES["image"]["tmp_name"], "../upload/" . $newFilename);
+//location ng folder
+$location = "upload/" . $newFilename;
+//query mo lagay mo dito haha
+mysqli_query($conn,"update customer set lastname='$lastname', firstname='$firstname', middlename='$middlename', address='$address', contact='$contact', photo='$location' where userid='$id'");
+}
+else{
+$location=$prow['photo'];
+?>
+<script>
+window.alert('Photo not updated. Please upload JPG or PNG photo only!');
+</script>
+<?php
+}
+}
