@@ -2,11 +2,18 @@
 
 class Database {
    // Declare all connection strings
-   private static $db_server = '127.0.0.1';
-   private static $db_name = 'loginapp';
-   private static $db_username = 'root';
-   private static $db_pwd = '';
+//    private static $db_server = '127.0.0.1';
+//    private static $db_name = 'loginapp';
+//    private static $db_username = 'root';
+//    private static $db_pwd = '';
+   
+      private static $db_server = 'sql12.freemysqlhosting.net';
+   private static $db_name = 'sql12378754';
+   private static $db_username = 'sql12378754';
+   private static $db_pwd = 'VB8hK9jQyM';
 
+   
+   
    public static function conn() {
 
       $dsn = 'mysql:host='. self::$db_server .';dbname='. self::$db_name .';charset=utf8mb4';
