@@ -1,8 +1,8 @@
 <?php
-		$host="localhost";
-		$database="treetracking";
-		$user="root";
-		$pass="";
+		$host="sql12.freemysqlhosting.net";
+		$database="sql12378754";
+		$user="sql12378754";
+		$pass="VB8hK9jQyM";
 
 
 
